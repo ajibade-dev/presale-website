@@ -3,16 +3,17 @@ import Link from "next/link"
 import { useMoralis } from "react-moralis"
 import { useEffect } from "react"
 const Navbar = () => {
-  const {enableWeb3, account, isWeb3Enabled, Moralis, deactivateWeb3} = useMoralis()
+  const {enableWeb3, account, isWeb3Enabled, Moralis, deactivateWeb3, isWeb3EnableLoading} = useMoralis()
 
 //to connect to metamask and store in localstorage
   useEffect(() => {
-    if(isWeb3Enabled) return 
+    if(isWeb3Enabled) return
     if(typeof window !== "undefined"){
       if (window.localStorage.getItem("connected")){
         enableWeb3()
       }
-    }
+    } 
+    
   }, [isWeb3Enabled])
 
 useEffect(() => {
@@ -42,14 +43,16 @@ useEffect(() => {
 
     
     <div className="flex gap-4">
-      {account ? (<button className="px-4 py-2 border-2 rounded-md text-[#d64f27] border-[#d64f27] hover:bg-[#d64f27] hover:border-slate-600 hover:text-black">Connected to {account.slice(0,6)}...{account.slice(account.length - 4)}</button>) :
+      {account ? (<button className=" px-4 py-2 border-2 rounded-md text-[#d64f27] border-[#d64f27] hover:bg-[#d64f27] hover:border-slate-600 hover:text-black">Connected to {account.slice(0,6)}...{account.slice(account.length - 4)}</button>) :
        (<button onClick={async () =>{
         await enableWeb3()
-      if(typeof window !== "undefined"){
-        window.localStorage.setItem("connected", "injected")
-      }
-      
-      }} className="px-4 py-2 border-2 rounded-md text-[#d64f27] border-[#d64f27] hover:bg-[#d64f27] hover:border-slate-600 hover:text-black">Connect Wallet</button>)}
+        if(typeof window !== "undefined"){
+          window.localStorage.setItem("connected", "injected")
+        }
+        
+      }}
+      disabled={isWeb3EnableLoading}
+      className="px-4 py-2 border-2 rounded-md text-[#d64f27] border-[#d64f27] hover:bg-[#d64f27] hover:border-slate-600 hover:text-black">Connect Wallet</button>)}
     
     </div>
     </div>

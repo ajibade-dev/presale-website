@@ -2,8 +2,18 @@
 import Link from "next/link";
 import { useMoralis } from "react-moralis";
 import { MoralisProvider } from "react-moralis";
+import ClipboardJS from "clipboard";
+import { useEffect } from "react";
 
 export default function Home() {
+//  useEffect(() => {
+//   const clipboard = new ClipboardJS()
+
+//   return () => {
+//     clipboard.destroy()
+//   }
+//  })
+
   return (
     
       
@@ -29,8 +39,24 @@ export default function Home() {
        */}
     {/* the other part of the website */}
     
-      <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-blue-500">Hello there</h1>
+      <div className="flex min-h-screen flex-col items-center justify-between p-24 bg-[#07091a]">
+      <div className="flex flex-col border-4 border-[#334155] rounded-lg p-10 gap-6 bg-[#060816]">
+        <h1 className="text-[#cfd2ea] font-extrabold text-5xl">PRESALE <span className="text-[#d0a862]">INFO</span></h1>
+        
+          <div className="flex gap-2 items-center">
+          <img src="/chinese.png" alt="coin"  className="w-10 h-10"/>
+          <h4 className="text-[#cfd2ea] text-xl font-bold">Token Symbol <span className="text-[#d0a862]">BLAB</span></h4>
+          </div>
+          
+          <div className="flex flex-col gap-3">
+            <h4 className="text-white font-bold text-xl">contract adress</h4>
+            <div className="flex flex-row gap-2">
+            <p className="p-2 border-2 border-[#d0a862] r rounded-md"></p>
+            <button className="px-4 py-2 bg-white text-black">Copy</button>
+            </div>
+            
+          </div>
+      </div>
       </div>
       
     </main>
